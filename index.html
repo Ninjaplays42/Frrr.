@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* ... (Keep your existing CSS here) ... */
+        body {
+            background: linear-gradient(135deg, #1e1e2f, #2d2d44);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        .step { display: none; text-align: center; animation: fadeIn 1.5s; }
+        #step-1 { display: block; }
+        .memory-button { 
+            padding: 15px 30px; border-radius: 50px; border: 2px solid #ff9a9e;
+            background: transparent; color: #ff9a9e; cursor: pointer;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
 
+    <audio id="bg-music" src="ff.mp3" loop></audio>
+
+    <div class="step" id="step-1">
+        <p>I have a message for you...</p>
+        <button class="memory-button" onclick="startMemories()">Click to start</button>
+    </div>
+
+    <div class="step" id="step-2">
+        <p>"It’s been a long day without you, my friend..."</p>
+        <button class="memory-button" onclick="nextStep(2)">Next</button>
+    </div>
+
+    <div class="step" id="step-3">
+        <p>"And I’ll tell you all about it when I see you again."</p>
+        <button class="memory-button" onclick="nextStep(3)">Restart</button>
+    </div>
+  <div class="step" id="step-4">
+        <p>"yesterday w're in nursury and today in 11th"</p>
+        <button class="memory-button" onclick="nextStep(4)">one more</button>
+    </div>
+    <div class="step" id="step-5">
+        <p>"We didn't realize we were making memories, we just knew we were having fun."</p>
+        <button class="memory-button" onclick="nextStep(5)">one more..</button>
+    </div>
+    <div class="step" id="step-6">
+        <p>"Thinking of the days when our only worry was how we will pass the school test."</p>
+        <button class="memory-button" onclick="nextStep(6)">Restart?</button>
+    </div>
+    <script>
+        function startMemories() {
+            // Start the music
+            document.getElementById('bg-music').play();
+            
+            // Move to the next step
+            nextStep(1);
+        }
+
+        function nextStep(currentNumber) {
+            document.getElementById('step-' + currentNumber).style.display = 'none';
+            
+            let nextNumber = currentNumber + 1;
+            let nextElement = document.getElementById('step-' + nextNumber);
+
+            if (nextElement) {
+                nextElement.style.display = 'block';
+            } else {
+                document.getElementById('step-1').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
